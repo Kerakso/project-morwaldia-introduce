@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  --background: 180 10% 8%;
+  --foreground: 160 15% 75%;
+  --card: 180 8% 12%;
+  --card-foreground: 160 15% 75%;
+  --popover: 180 8% 12%;
+  --popover-foreground: 160 15% 75%;
+  --primary: 0 65% 45%;
+  --primary-foreground: 0 0% 95%;
+  --secondary: 175 30% 18%;
+  --secondary-foreground: 160 15% 75%;
+  --muted: 180 8% 15%;
+  --muted-foreground: 160 10% 45%;
+  --accent: 170 100% 40%;
+  --accent-foreground: 180 10% 8%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 95%;
+  --border: 180 10% 18%;
+  --input: 180 10% 18%;
+  --ring: 0 65% 45%;
+  --radius: 0.25rem;
+  --sidebar-background: 180 10% 8%;
+  --sidebar-foreground: 160 15% 75%;
+  --sidebar-primary: 0 65% 45%;
+  --sidebar-primary-foreground: 0 0% 95%;
+  --sidebar-accent: 175 30% 18%;
+  --sidebar-accent-foreground: 160 15% 75%;
+  --sidebar-border: 180 10% 18%;
+  --sidebar-ring: 0 65% 45%;
+
+  /* Custom dystopian tokens */
+  --glow-red: 0 65% 45%;
+  --glow-cyan: 170 100% 40%;
+  --fog: 180 10% 8%;
+  --propaganda-red: 0 75% 40%;
+
+  --mrs-green: 102 100% 24.9%;
+  --mrs-gray: 0 0% 25.1%;
+  --mrs-gray-foreground: 0 0% 50.2%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-vt323: var(--font-vt323);
+  --font-sharetech: var(--font-sharetech-mono);
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--rimary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-glow-cyan: hsl(var(--glow-cyan));
+  --color-glow-red: hsl(var(--glow-red));
+  --color-fog: hsl(var(--fog));
+  --color-propaganda-red: hsl(var(--propaganda-red));
+
+  --color-mrs-green: hsl(var(--mrs-green));
+  --color-mrs-gray: hsl(var(--mrs-gray));
+  --color-mrs-gray-foreground: hsl(var(--mrs-gray-foreground));
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sharetech), monospace;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-vt323), monospace;
+  }
+}
+
+@layer utilities {
+  .scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0 0% 0% / 0.15) 2px,
+      hsl(0 0% 0% / 0.15) 4px
+    );
+    pointer-events: none;
+  }
+
+  .vignette {
+    box-shadow: inset 0 0 150px 60px hsl(0 0% 0% / 0.8);
+    pointer-events: none;
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.3; }
+    94% { opacity: 1; }
+    96% { opacity: 0.5; }
+    97% { opacity: 1; }
+  }
+
+  @keyframes static-noise {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+  }
+
+  .animate-glitch {
+    animation: glitch 0.3s ease-in-out infinite;
+  }
+
+  .animate-flicker {
+    animation: flicker 4s ease-in-out infinite;
+  }
+}
