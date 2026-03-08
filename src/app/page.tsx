@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import useAudio from "./hooks/useAudio";
 import { Volume2, VolumeX } from "lucide-react";
 import Image from "next/image";
+import morsunistEmblem from "@/public/morsunistEmblem.png";
+import cityPanorama from "@/public/cityPanorama.png";
 
 type Phase = 'black' | 'static' | 'emblem' | 'title' | 'tagline' | 'city' | 'features' | 'final';
 
@@ -190,7 +192,7 @@ const Home = () => {
             transition={{ duration: 1.5 }}
           >
             <Image 
-              src={"/project-morswaldia-introduce/morsunistEmblem.png"}
+              src={morsunistEmblem}
               alt="Morsunist Emblem"
               className="w-40 h-40 md:w-56 md:h-56 object-contain drop-shadow-[0_0_30px_hsl(var(--mrs-gray)/0.5)]"
               style={{ imageRendering: 'pixelated' }}
@@ -249,7 +251,7 @@ const Home = () => {
               className="w-full h-full"
             >
               <Image 
-                src={"/project-morswaldia-introduce/cityPanorama.png"}
+                src={cityPanorama}
                 alt="Morswald Panorama"
                 className="w-full h-full object-cover"
                 style={{ imageRendering: 'auto' }}
